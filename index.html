@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleCustom.css">
     <script type="text/javascript" src="js/scriptsCustom.js"></script>
@@ -29,16 +30,24 @@
                 <div class="sombra">
                     <h1>Inicia sesión</h1>
                     <h5><small class="text-muted">¿Aún no tienes una cuenta? <a href="">Registrarme</a></small></h5>
-                    <form action="verificarDatos.php" method="POST">
+                    <form action="verificarDatos.php" method="POST" id="formulario" @submit="checkForm">
                     <div class="form-group">
                         <br>
                         <label for="usuario">Usuario o correo electrónico</label>
-                        <input type="email" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="example@email.com">
+                        <input type="email" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
+                        v-model="correo">
+                        <small v-if="errorCorreo.length" class="text-danger">
+                            Tienes que ingresar un correo para continuar
+                        </small>
                         <small id="emailHelp" class="form-text text-muted">Nunca compartimos tu correo con otras plataformas</small>
                     </div>
                     <div class="form-group">
                         <label for="clave">Contraseña</label>
-                        <input type="password" class="form-control" id="clave" aria-describedby="emailHelp" placeholder="Escribe tu contraseña">
+                        <input type="password" class="form-control" id="clave" aria-describedby="emailHelp" placeholder="Escribe tu contraseña" id="clave"
+                        v-model="clave">
+                        <small v-if="errorCorreo.length" class="text-danger">
+                            Tienes que ingresar tu clave para continuar
+                        </small>
                         <small id="emailHelp" class="form-text text-muted">¿No la recuerdas? <a href="">Olvidé mi contraseña</a></small>
                     </div>
                     <button type="submit" class="btn btn-primary">Ingresar</button>
@@ -46,6 +55,40 @@
                 </div>
             </center>
         </div>
+
+        <!-- Script de verificacion de formulario -->
+        <script>
+            const app = new Vue({
+                el: '#formulario',
+                data: {
+                    errorCorreo: [],
+                    errorClave: [],
+                    correo: null,
+                    clave: null
+                },
+                methods:{
+                    checkForm: function (e) {
+                    if (this.correo && this.clave) {
+                        return true;
+                    }
+
+                    this.errorCorreo = [];
+                    this.errorClave = [];
+
+                    if (!this.correo) {
+                        this.errorCorreo.push('A');
+                    }
+                    if (!this.clave) {
+                        this.errorClave.push('A');
+                    }
+
+                    e.preventDefault();
+                    }
+                }
+            })
+        </script>
+
+
         <div class="footer">
             <div class="container sombra dark">
                 <div class="row">
