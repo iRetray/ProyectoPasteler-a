@@ -35,18 +35,20 @@
                         <br>
                         <label for="usuario">Usuario o correo electrónico</label>
                         <input type="email" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
-                        v-model="correo">
-                        <small v-if="errorCorreo.length" class="text-danger">
-                            Tienes que ingresar un correo para continuar
-                        </small>
+                        v-model="correo">                        
                         <small id="emailHelp" class="form-text text-muted">Nunca compartimos tu correo con otras plataformas</small>
+                        <small v-if="errorCorreo.length" class="text-danger">
+                            <br>
+                            <div class="alert alert-danger">Tienes que ingresar un correo para continuar</div>                            
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="clave">Contraseña</label>
                         <input type="password" class="form-control" id="clave" aria-describedby="emailHelp" placeholder="Escribe tu contraseña" id="clave"
                         v-model="clave">
-                        <small v-if="errorCorreo.length" class="text-danger">
-                            Tienes que ingresar tu clave para continuar
+                        <small v-if="errorClave.length" class="text-danger">
+                            <br>
+                            <div class="alert alert-danger">Tienes que ingresar tu clave para continuar</div>            
                         </small>
                         <small id="emailHelp" class="form-text text-muted">¿No la recuerdas? <a href="">Olvidé mi contraseña</a></small>
                     </div>
