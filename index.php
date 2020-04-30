@@ -63,8 +63,8 @@
             const app = new Vue({
                 el: '#formulario',
                 data: {
-                    errorCorreo: [],
-                    errorClave: [],
+                    errorCorreo: false,
+                    errorClave: false,
                     correo: null,
                     clave: null
                 },
@@ -74,14 +74,14 @@
                         return true;
                     }                  
                 
-                    this.errorCorreo = [];
-                    this.errorClave = [];
+                    this.errorCorreo = false;
+                    this.errorClave = false;
 
                     if (!this.correo) {
-                        this.errorCorreo.push('A');
+                        this.errorCorreo = true;
                     }
                     if (!this.clave) {
-                        this.errorClave.push('A');
+                        this.errorClave = true;
                     }
 
                     e.preventDefault();
