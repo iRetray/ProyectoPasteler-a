@@ -50,7 +50,7 @@
                         </small>
                         <small v-if="errorCorreo" class="text-danger">
                             <br>
-                            <div class="alert alert-danger">El correo ingresado no está registrado en</div>                            
+                            <div class="alert alert-danger">El correo ingresado no está registrado en el sistema</div>                            
                         </small>
                     </div>
                     <div class="form-group">
@@ -85,7 +85,7 @@
                 methods:{
                     checkForm: function (e) {
                     if (this.correo && this.clave && this.correoRegistrado) {
-                        return false;
+                        return true;
                     }                  
                 
                     this.errorCorreo = false;
@@ -98,16 +98,17 @@
                         this.errorClave = true;
                     }
 
+                    
                     axios.post(url).then( response=>{
                         this.correosRegistrados = response.data;
                     })
-
-                    for (let i = 0; i < correosRegistrados.length; i++) {
-                        const elemento = correosRegistrados[i];
+                    
+                    for (var i = 0; i < correosRegistrados.length; i++) {
+                        var elemento = correosRegistrados[i];
                         if (elemento.correo == this.correo) {
                             this.correoRegistrado = true;
                         }                        
-                    }
+                    }                    
 
                     e.preventDefault();
                     }
