@@ -8,6 +8,13 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+    <script src="js/jquery.min.js"></script>    
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>  
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Medidor de Recetas</title>
@@ -37,16 +44,20 @@
                         <input type="email" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
                         v-model="correo">                        
                         <small id="emailHelp" class="form-text text-muted">Nunca compartimos tu correo con otras plataformas</small>
-                        <small v-if="errorCorreo.length" class="text-danger">
+                        <small v-if="errorCorreo" class="text-danger">
                             <br>
                             <div class="alert alert-danger">Tienes que ingresar un correo para continuar</div>                            
+                        </small>
+                        <small v-if="errorCorreo" class="text-danger">
+                            <br>
+                            <div class="alert alert-danger">El correo ingresado no está registrado en</div>                            
                         </small>
                     </div>
                     <div class="form-group">
                         <label for="clave">Contraseña</label>
                         <input type="password" class="form-control" id="clave" aria-describedby="emailHelp" placeholder="Escribe tu contraseña" id="clave"
                         v-model="clave">
-                        <small v-if="errorClave.length" class="text-danger">
+                        <small v-if="errorClave" class="text-danger">
                             <br>
                             <div class="alert alert-danger">Tienes que ingresar tu clave para continuar</div>            
                         </small>
@@ -60,18 +71,21 @@
 
         <!-- Script de verificacion de formulario -->
         <script>
+            var url = 'verificacionAXIOS/crud.php';
             const app = new Vue({
                 el: '#formulario',
                 data: {
                     errorCorreo: false,
                     errorClave: false,
+                    correoRegistrado: false,
                     correo: null,
-                    clave: null
+                    clave: null,
+                    correosRegistrados: []
                 },
                 methods:{
                     checkForm: function (e) {
-                    if (this.correo && this.clave) {
-                        return true;
+                    if (this.correo && this.clave && this.correoRegistrado) {
+                        return false;
                     }                  
                 
                     this.errorCorreo = false;
@@ -82,6 +96,17 @@
                     }
                     if (!this.clave) {
                         this.errorClave = true;
+                    }
+
+                    axios.post(url).then( response=>{
+                        this.correosRegistrados = response.data;
+                    })
+
+                    for (let i = 0; i < correosRegistrados.length; i++) {
+                        const elemento = correosRegistrados[i];
+                        if (elemento.correo == this.correo) {
+                            this.correoRegistrado = true;
+                        }                        
                     }
 
                     e.preventDefault();
