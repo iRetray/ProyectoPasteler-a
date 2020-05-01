@@ -12,9 +12,6 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>  
     <script src="js/sweetalert2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Medidor de Recetas</title>
@@ -41,7 +38,7 @@
                     <div class="form-group">
                         <br>
                         <label for="usuario">Usuario o correo electrónico</label>
-                        <input type="email" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
+                        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
                         v-model="correo">                        
                         <small id="emailHelp" class="form-text text-muted">Nunca compartimos tu correo con otras plataformas</small>
                         <small v-if="errorCorreo" class="text-danger">
