@@ -48,10 +48,6 @@
                             <br>
                             <div class="alert alert-danger">Tienes que ingresar un correo para continuar</div>                            
                         </small>
-                        <small v-if="errorCorreo" class="text-danger">
-                            <br>
-                            <div class="alert alert-danger">El correo ingresado no está registrado en el sistema</div>                            
-                        </small>
                     </div>
                     <div class="form-group">
                         <label for="clave">Contraseña</label>
@@ -77,14 +73,12 @@
                 data: {
                     errorCorreo: false,
                     errorClave: false,
-                    correoRegistrado: false,
                     correo: null,
-                    clave: null,
-                    correosRegistrados: []
+                    clave: null
                 },
                 methods:{
                     checkForm: function (e) {
-                    if (this.correo && this.clave && this.correoRegistrado) {
+                    if (this.correo && this.clave) {
                         return true;
                     }                  
                 
@@ -96,19 +90,7 @@
                     }
                     if (!this.clave) {
                         this.errorClave = true;
-                    }
-
-                    
-                    axios.post(url).then( response=>{
-                        this.correosRegistrados = response.data;
-                    })
-                    
-                    for (var i = 0; i < correosRegistrados.length; i++) {
-                        var elemento = correosRegistrados[i];
-                        if (elemento.correo == this.correo) {
-                            this.correoRegistrado = true;
-                        }                        
-                    }                    
+                    }                                        
 
                     e.preventDefault();
                     }
