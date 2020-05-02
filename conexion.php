@@ -1,17 +1,8 @@
 <?php
-    class Conexion{
-        public static function Conectar(){
-            define('servidor','localhost');
-            define('nombre_db','recetas');
-            define('usuario','root');
-            define('password','');
-        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND=>'SET NAMES utf8');
-        try{
-            $conexion = new PDO("mysql:host=".servidor."; dbname=".nombre_db,usuario,password,$opciones);
-            return $conexion;
-        }catch(Exeption $e){
-            die('El error de la conexion es:'.$e->getMessage());
-        }
-        }
-    }
+$servidor = "localhost";
+$usuarioBD = "root";
+$contraseña = "";
+$baseDeDatos = "recetas";
+$conexion = mysqli_connect($servidor, $usuarioBD, $contraseña, $baseDeDatos) or die ("La conexion al servidor no fue establecida");
+$db = mysqli_select_db($conexion,$baseDeDatos) or die ("No se logro conectar a la base de datos");
 ?>

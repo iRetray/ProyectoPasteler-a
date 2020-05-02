@@ -12,6 +12,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>  
     <script src="js/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.13.0/bootstrap-vue.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Medidor de Recetas</title>
@@ -34,12 +35,12 @@
                 <div class="sombra">
                     <h1>Inicia sesión</h1>
                     <h5><small class="text-muted">¿Aún no tienes una cuenta? <a href="">Registrarme</a></small></h5>
-                    <form action="verificarDatos.php" method="POST" id="formulario" @submit="checkForm">
+                    <form action="verificarDatos.php" method="post" id="formulario" @submit="checkForm">
                     <div class="form-group">
                         <br>
                         <label for="usuario">Usuario o correo electrónico</label>
-                        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
-                        v-model="correo">                        
+                        <b-form-input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="example@email.com" id="correo"
+                        v-model="correo" :state="estadoCorreo" name="correo"></b-form-input>                       
                         <small id="emailHelp" class="form-text text-muted">Nunca compartimos tu correo con otras plataformas</small>
                         <small v-if="errorCorreo" class="text-danger">
                             <br>
@@ -48,8 +49,8 @@
                     </div>
                     <div class="form-group">
                         <label for="clave">Contraseña</label>
-                        <input type="password" class="form-control" id="clave" aria-describedby="emailHelp" placeholder="Escribe tu contraseña" id="clave"
-                        v-model="clave">
+                        <b-form-input type="password" class="form-control" id="clave" aria-describedby="emailHelp" placeholder="Escribe tu contraseña" id="clave"
+                        v-model="clave" :state="estadoClave" name="clave"></b-form-input>  
                         <small v-if="errorClave" class="text-danger">
                             <br>
                             <div class="alert alert-danger">Tienes que ingresar tu clave para continuar</div>            
@@ -91,6 +92,14 @@
 
                     e.preventDefault();
                     }
+                },
+                computed: {
+                estadoCorreo() {
+                    return this.correo ? true : false
+                },
+                estadoClave() {
+                    return this.clave ? true : false
+                }
                 }
             })
         </script>
