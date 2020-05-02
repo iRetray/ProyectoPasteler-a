@@ -23,12 +23,12 @@
     }
 
     if (!$correoEncontrado) {
-        header("Location:errorCorreoNoRegistrado.php");
+        header("Location:erroresLogin/errorCorreoNoRegistrado.php?correo=$correo");
     }
     if ($correoEncontrado && !$claveCorrecta) {
-        header("Location:claveIncorrecta.php");
+        header("Location:erroresLogin/claveIncorrecta.php");
     }
     if ($correoEncontrado && $claveCorrecta) {
-        header("Location:home.php");
+        header("Location:aplicacion/home.php");
     }
 ?>

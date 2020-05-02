@@ -1,0 +1,81 @@
+.sombra {
+    -webkit-box-shadow: 0px 0px 55px -9px rgba(209,209,209,1);
+    -moz-box-shadow: 0px 0px 55px -9px rgba(209,209,209,1);
+    box-shadow: 0px 0px 55px -9px rgba(209,209,209,1);
+    border-radius: 30px;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.dark {
+    background-color: #333333;
+}
+
+.white {
+    
+}
+
+.errorImg {
+    max-width: 350px;
+    margin: 10px;
+}
+
+.calculadora {
+    max-width: 250px;
+    padding: 15px;
+}
+
+.whatsapp {
+    max-width: 70px;
+    padding: 10px;
+}
+
+.info {
+    background-color: #1e1e1e;
+}
+
+/* Maquetado */
+.general {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "titulo titulo"
+        "error error"
+        "footer  footer";
+}
+.general .imagen {
+    grid-area: imagen;
+    padding: 15px;
+}
+.general .titulo {
+    grid-area: titulo;
+    padding: 15px;
+}
+.general .error {
+    grid-area: error;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 15px;
+}
+.general .footer {
+    grid-area: footer;
+    padding: 15px;
+}
+
+
+
+/* Configuración para el responsive movil */
+@media screen and (max-width: 800px){
+    .general {
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "titulo titulo"
+            "error error"
+            "footer  footer";
+    }
+}
