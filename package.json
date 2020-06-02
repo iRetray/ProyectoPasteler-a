@@ -1,0 +1,32 @@
+{
+  "name": "proyectopasteleria",
+  "version": "1.0.0",
+  "description": "A proyect for a bakery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iRetray/ProyectoPasteleria.git"
+  },
+  "keywords": [
+    "bakery",
+    "recipe"
+  ],
+  "author": "Retray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iRetray/ProyectoPasteleria/issues"
+  },
+  "homepage": "https://github.com/iRetray/ProyectoPasteleria#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.4.0",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "sweetalert2": "^9.14.0",
+    "vue": "^2.6.11"
+  }
+}
